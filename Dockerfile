@@ -44,3 +44,7 @@ RUN apt-get install tightvncserver xfonts-base
 RUN apt -y install novnc \
     && websockify \
     && python-numpy
+
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
