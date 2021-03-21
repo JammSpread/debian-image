@@ -39,3 +39,8 @@ ENV LANG=en_US.UTF-8
 
 # Install VNC Server
 RUN apt-get install tightvncserver xfonts-base
+
+# Install noVNC
+RUN apt -y install novnc \
+    && websockify \
+    && python-numpy
