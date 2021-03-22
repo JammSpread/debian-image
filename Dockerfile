@@ -48,6 +48,6 @@ RUN apt-get update \
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
-EXPOSE 5900
+ENV PORT=6080
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
