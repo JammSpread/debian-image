@@ -1,2 +1,2 @@
-# ubuntu-image
-An Ubuntu Linux Docker image with a VNC server.
+# debian-image
+A Debian Linux Docker image with a VNC server.

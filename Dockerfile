@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM debian
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV SHELL /bin/bash
@@ -17,7 +17,7 @@ RUN apt update \
 RUN apt update \
     && apt install -y --no-install-recommends --allow-unauthenticated \
         xvfb x11vnc \
-        vim firefox ttf-ubuntu-font-family ttf-wqy-zenhei  \
+        vim ttf-wqy-zenhei  \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
