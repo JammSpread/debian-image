@@ -1,7 +1,7 @@
 FROM ubuntu
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV SHELL=/bin/bash
+ENV SHELL /bin/bash
 
 # Install Basic Packages
 RUN apt update \
@@ -63,6 +63,6 @@ RUN chmod +x /tini
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
-ENV PORT=6080
+ENV PORT 6080
 
 ENTRYPOINT ["/tini", "--", "/usr/bin/entrypoint.sh"]
