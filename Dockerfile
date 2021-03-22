@@ -46,4 +46,6 @@ RUN apt -y install novnc \
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
+EXPOSE 5900
+
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
