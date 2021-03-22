@@ -9,7 +9,7 @@ RUN apt update \
     && apt update \
     && apt install -y --no-install-recommends --allow-unauthenticated \
         supervisor sudo net-tools zenity xz-utils \
-        dbus-x11 x11-utils alsa-utils locales \
+        dbus-x11 x11-utils alsa-utils locales gpg-agent \
         mesa-utils libgl1-mesa-dri \
     && apt autoclean -y \
     && apt autoremove -y \
@@ -45,6 +45,16 @@ RUN apt-get update \
     && apt-get -y install novnc \
     websockify \
     python-numpy
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash - \
+    && sudo apt-get install -y nodejs
+
+# Install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+    && sudo apt-get update \
+    && sudo apt-get install -y yarn
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
