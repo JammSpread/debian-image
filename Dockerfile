@@ -35,8 +35,9 @@ RUN sed -i "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen \
     && locale-gen
 ENV LANG=en_US.UTF-8
 
-# Install VNC Server
-RUN apt-get install tightvncserver xfonts-base
+# Configure VNC
+RUN mkdir ~/.vnc
+RUN x11vnc -storepasswd $PASSWORD ~/.vnc/passwd
 
 # Install noVNC
 RUN apt -y install novnc \
