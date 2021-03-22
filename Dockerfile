@@ -3,8 +3,6 @@ FROM ubuntu
 ENV DEBIAN_FRONTEND noninteractive
 ENV SHELL=/bin/bash
 
-RUN sed -i 's#http://archive.ubuntu.com/ubuntu/#mirror://mirrors.ubuntu.com/mirrors.txt#' /etc/apt/sources.list;
-
 # Install Basic Packages
 RUN apt update \
     && apt install -y --no-install-recommends software-properties-common curl apache2-utils \
