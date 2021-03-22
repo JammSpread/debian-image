@@ -56,8 +56,13 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
     && sudo apt-get update \
     && sudo apt-get install -y yarn
 
+# Install Tini
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
 ENV PORT=6080
 
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+ENTRYPOINT ["/tini", "--", "/usr/bin/entrypoint.sh"]
