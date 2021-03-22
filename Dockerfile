@@ -37,12 +37,14 @@ ENV LANG=en_US.UTF-8
 
 # Configure VNC
 RUN mkdir ~/.vnc
-RUN x11vnc -storepasswd $PASSWORD ~/.vnc/passwd
+RUN printf '%s\n' '$PASSWORD' '$PASSWORD' 'y' | \
+   script -q -c 'x11vnc -storepasswd ~/.vnc/passwd' /dev/null
 
 # Install noVNC
-RUN apt -y install novnc \
-    && websockify \
-    && python-numpy
+RUN apt-get update \
+    && apt-get -y install novnc \
+    websockify \
+    python-numpy
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
